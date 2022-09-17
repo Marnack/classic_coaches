@@ -1,0 +1,4 @@
+Intercity Corridor Coach Class 1=Intercity Abteilwagen der Klasse 1
+Intercity Corridor Coach Class 2=Intercity Abteilwagen der Klasse 2
+Intercity Open Coach Class 1=Intercity Grossraumwagen der Klasse 1
+Intercity Open Coach Class 2=Intercity Grossraumwagen der Klasse 2

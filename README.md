@@ -34,32 +34,43 @@ The wagon is modeled with 32 seats.  Up to 5 players can board each wagon.
 
 ## Livery Customization
 
-Like some other mods for **Advanced Trains**, this mod supports using the bike painter tool from the [bike mod](https://content.minetest.net/packages/Hume2/bike/) to allow players to paint portions of their wagons a custom color.
+Like some other mods for **Advanced Trains**, this mod supports using the bike painter tool from the [bike mod](https://content.minetest.net/packages/Hume2/bike/) to allow players to paint a portion of their wagon a custom color.  In addition to supporting that tool, however, this mod also introduces support for the livery designer tool included in the **AdvTrains Livery Tools** modpack that allows players to customize the appearance of their wagons.  By using the livery designer tool, players will be have access to more customization options.
 
-In addition to using the bike painter to change a color, this mod also allows players to use the bike painter tool to alter the appearance of their wagons  more significantly by selecting a different livery template.  These templates   each have a different texture and a different area of the wagon that is affected when colorized by the painter.
+Both the bike painter and the livery designer tools are optional and can be used interchangeably on wagons from this mod.
 
-Because of these templates, this mod handles the bike painter tool slightly differently from other mods.  Specifically, the bike painter can also be used to select which livery template is applied to a wagon as well as colorize a portion of it. This is accomplished by using the bike painter tool's "alpha" value to select a livery template instead of a transparency level. Valid alpha values can range from 0 to 6.  Alpha values greater than 6 cause the bike painter to have no effect.
+### Bike Painter Tool
 
-The bike painter tool's RGB value otherwise works as usual to define a custom color.  However, an RGB value of #000000 has a special meaning in that instead of setting the color to black, it resets the color to its default value.  (Consider using color "#010000", "#010101" or something similar for black if needed.)
+In addition to using the bike painter to change a color, this mod also allows players to use the bike painter tool to alter the appearance of their wagons  by selecting a different livery template.  These templates each have a different texture and a different area of the wagon that is affected when colorized by the painter.
+
+In order to support the selection of livery templates, this mod handles the bike painter tool slightly differently than other mods.  Specifically, the bike painter can be used to select which livery template is applied to a wagon as well as colorize one aspect of the livery.  This is accomplished by using the bike painter tool's "alpha" value to select a livery template instead of a transparency level.  Valid alpha values can range from 0 to n where n is one less than the number of livery templates that have been defined for the wagon.  Values greater than n cause the bike painter to have no effect.  Currently, this mod defines 7 livery templates for each of its 4 wagons.
+
+The bike painter tool's RGB value otherwise works as usual to define a custom color but that color is only applied to the livery template's first overlay, if defined.  Also, an RGB value of #000000 has a special meaning in that instead of setting the color to black, it resets the color to its default value.  (Consider using color "#010000", "#010101" or something similar for black if needed.) This "#000000" RBG value only applies to the bike painter and does not have a special meaning when using the livery designer tool. 
+
+If a livery template has no overlays defined, then the RGB value has no effect but the alpha value is still used to select the template.  (Currently, all livery templates defined in this mod have multiple overlays.)
 
 #### Examples:
 
 Bike Painter Value|Result
 ---|---
-#000000**00**|Applies livery template #00 with its default colors
+#000000**00**|Applies livery template #00 with its default colors (this is the wagon's initial appearance)
 #000000**01**|Applies livery template #01 with its default colors
-#FF0000**02**|Applies livery template #02 and colors a portion of it red 
-#00FF00**03**|Applies livery template #03 and colors a portion of it green 
+#FF0000**02**|Applies livery template #02 with a red color applied to the first overlay of the livery template
+#00FF00**03**|Applies livery template #03 with a green color applied to the first overlay of the livery template 
 #00092B**07**|No effect due to livery template #07 not being defined.
 
+Note that the bike painter tool first clears any livery customization that may have previously been applied to the wagon.
+
+### Livery Designer Tool
+
+The livery designer tool has a graphical user interface that allows easier access to livery template selection and supports independent colorization of multiple overlays of the livery.  It also allows players to preview and select predefined liveries.  See the livery designer tool's documentation included in the **AdvTrains Livery Tools** modpack for more information.
 
 ## Author's Notes
 
-1) These wagon models are the same ones that I created earlier in 2022 with the intention of adding them to the [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/) mod pack.  However, with multiple variations of the Moretrains modpack currently in use, I have decided to release these wagons separately in this mod for easier distribution and to use them for showcasing new livery customization functionality.  Both the liveries and the crafting recipes in this mod are different from the those that I created for Moretrains so they won't conflict with one another if used in the same game.
+1) These wagon models are the same ones that I created in 2022 with the intention of adding them to the [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/) mod pack.  However, with multiple variations of the Moretrains modpack currently in use, I have decided to release these wagons separately in this mod for easier distribution and to use them for showcasing new livery customization functionality.  Both the liveries and the crafting recipes in this mod are different from the those that I created for Moretrains so they won't conflict with one another if used in the same game.
 
 ## Licenses
 
-Copyright © 2022 Marnack
+Copyright © 2022-2023 Marnack
 
 - Classic Coaches code is licensed under the GNU AGPL version 3 license, see [LICENSE.txt](LICENSE.txt) for details.
 - Unless otherwise specified, Classic Coaches media (models, textures, images  and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).

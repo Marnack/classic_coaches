@@ -799,7 +799,10 @@ for _, wagon in pairs(wagons) do
 		assign_to_seat_group = {"pass"},
 		visual_size = {x=1, y=1},
 		wagon_span=3,
+		wheel_positions = {1.9, -1.9},
 		collisionbox = {-1.0,-0.5,-1.0, 1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
 		drops={"default:steelblock"},
 	}, wagon.name, wagon.inventory_image)
 

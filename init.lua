@@ -4,11 +4,6 @@ local S = minetest.get_translator(mod_name)
 
 local use_advtrains_livery_designer = minetest.get_modpath( "advtrains_livery_designer" ) and advtrains_livery_designer
 
-local bed = 'wool:white'
-if  minetest.get_modpath("beds") then
-	bed = 'beds:bed'
-end
-
 local door = 'default:steel_ingot'
 if minetest.get_modpath("doors") then
 	door = 'doors:door_steel'
@@ -668,7 +663,7 @@ local function get_wagon_texture(wagon_type, livery_template_id, overlays)
 						livery_templates[wagon_type][livery_template_id].overlays[overlay.id].texture..
 						"^[colorize:"..overlay.color..":"..alpha..
 						")"
-				wagon_texture = wagon_texture..overlay_texture 
+				wagon_texture = wagon_texture..overlay_texture
 			end
 		end
 	end
@@ -749,8 +744,8 @@ for _, wagon in pairs(wagons) do
 		textures = wagon.textures,
 		set_textures = set_textures,
 		set_livery = set_livery,
-		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-			return not update_livery(wagon, puncher)
+		custom_may_destroy = function(wgn, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not update_livery(wgn, puncher)
 		end,
 		drives_on={default=true},
 		max_speed=20,

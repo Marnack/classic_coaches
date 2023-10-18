@@ -1,9 +1,6 @@
-local S
-if minetest.get_modpath("intllib") then
-    S = (intllib.make_gettext_pair and intllib.make_gettext_pair()) or intllib.Getter()
-else
-    S = function(s,a,...)a={a,...}return s:gsub("@(%d+)",function(n)return a[tonumber(n)]end)end
-end
+local mod_name = "classic_coaches"
+
+local S = minetest.get_translator(mod_name)
 
 local use_advtrains_livery_designer = minetest.get_modpath( "advtrains_livery_designer" ) and advtrains_livery_designer
 
@@ -18,8 +15,6 @@ if minetest.get_modpath("doors") then
 end
 
 ----------------------------------------------------------------------------------------
-
-local mod_name = "classic_coaches"
 
 local default_roof_alpha = 230
 local default_seat_alpha = 245
@@ -388,7 +383,7 @@ local predefined_liveries = {
 		name = S("CC Classic"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Window Band",
+			livery_template_name = S("CC Window Band"),
 			overlays = {
 				[1] = {id = 1,	color = "#FAF0E6"},	-- "Side Walls",
 				[2] = {id = 2,	color = "#202020"},	-- "Window Band",
@@ -402,7 +397,7 @@ local predefined_liveries = {
 		name = S("CC Classic Double Stripe"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Edged Stripe",
+			livery_template_name = S("CC Edged Stripe"),
 			overlays = {
 				[1] = {id = 1,	color = "#FAF0E6"},	-- "Side Walls",
 				[2] = {id = 2,	color = "#FAF0E6"},	-- "Stripe",
@@ -416,7 +411,7 @@ local predefined_liveries = {
 		name = S("CC Intercity Urban"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Intercity Stripe",
+			livery_template_name = S("CC Intercity Stripe"),
 			overlays = {
 				[1] = {id = 1,	color = "#808080"},	-- "Exterior Walls",
 				[2] = {id = 2,	color = "#006400"},	-- "Stripe",
@@ -430,7 +425,7 @@ local predefined_liveries = {
 		name = S("CC Intercity Dark Olive"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Intercity Stripe",
+			livery_template_name = S("CC Intercity Stripe"),
 			overlays = {
 				[1] = {id = 1,	color = "#516200"},	-- "Exterior Walls",
 --				[2] = {id = 2,	color = "#000000"},	-- "Stripe",
@@ -444,7 +439,7 @@ local predefined_liveries = {
 		name = S("CC Legacy Solid Red"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Solid Color",
+			livery_template_name = S("CC Solid Color"),
 			overlays = {
 				[1] = {id = 1,	color = "#800000"},	-- "Side Walls",
 				[2] = {id = 2,	color = "#2E8B57"},	-- "Seats",
@@ -458,7 +453,7 @@ local predefined_liveries = {
 		name = S("CC Modern Brown Stripe"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Stripe",
+			livery_template_name = S("CC Stripe"),
 			overlays = {
 --				[1] = {id = 1,	color = "#000000"},	-- "Side Walls",
 				[2] = {id = 2,	color = "#8B4513"},	-- "Stripe",
@@ -472,7 +467,7 @@ local predefined_liveries = {
 		name = S("CC Slate Roof"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Colored Roof",
+			livery_template_name = S("CC Colored Roof"),
 			overlays = {
 				[1] = {id = 1,	color = "#708090"},	-- "Side Walls",
 				[2] = {id = 2,	color = "#2F4F4F"},	-- "Roof",
@@ -486,7 +481,7 @@ local predefined_liveries = {
 		name = S("CC Legacy Express"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Express",
+			livery_template_name = S("CC Express"),
 			overlays = {
 				[1] = {id = 1,	color = "#400000"},	-- "Exterior Walls",
 				[2] = {id = 2,	color = "#000030"},	-- "Seats",
@@ -501,7 +496,7 @@ local predefined_liveries = {
 		name = S("No Logo Solid Green"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Solid Color",
+			livery_template_name = S("CC Solid Color"),
 			overlays = {
 				[1] = {id = 1,	color = "#004000"},	-- "Side Walls",
 --				[2] = {id = 2,	color = "#000000"},	-- "Seats",
@@ -515,7 +510,7 @@ local predefined_liveries = {
 		name = S("No Logo Retro Mojo"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Window Band",
+			livery_template_name = S("CC Window Band"),
 			overlays = {
 				[1] = {id = 1,	color = "#008080"},	-- "Side Walls",
 				[2] = {id = 2,	color = "#FAF0E6"},	-- "Window Band",
@@ -529,7 +524,7 @@ local predefined_liveries = {
 		name = S("No Logo Classic Express"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Express",
+			livery_template_name = S("CC Express"),
 			overlays = {
 --				[1] = {id = 1,	color = "#000000"},	-- "Exterior Walls",
 --				[2] = {id = 2,	color = "#000000"},	-- "Seats",
@@ -544,7 +539,7 @@ local predefined_liveries = {
 		name = S("No Logo Evergreen Express"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Express",
+			livery_template_name = S("CC Express"),
 			overlays = {
 				[1] = {id = 1,	color = "#003B00"},	-- "Exterior Walls",
 				[2] = {id = 2,	color = "#2E8B57"},	-- "Seats",
@@ -559,7 +554,7 @@ local predefined_liveries = {
 		name = S("No Logo Expresso Express"),
 		notes = "",
 		livery_design = {
-			livery_template_name = "CC Express",
+			livery_template_name = S("CC Express"),
 			overlays = {
 				[1] = {id = 1,	color = "#703000"},	-- "Exterior Walls",
 				[2] = {id = 2,	color = "#D2B48C"},	-- "Seats",
@@ -575,6 +570,13 @@ local predefined_liveries = {
 -- ===============================================================================================================================================
 
 if use_advtrains_livery_designer then
+	-- Notify player if a newer version of AdvTrains Livery Tools is available or needed.
+	if not advtrains_livery_designer.is_compatible_mod_version or
+	   not advtrains_livery_designer.is_compatible_mod_version({major = 0, minor = 8, patch = 3}) then
+		minetest.log("info", "["..mod_name.."] An old version of AdvTrains Livery Tools was detected. Consider updating to the latest version.")
+		-- Version 0.8.3 is not currently required so just log an informational message.
+	end
+
 	-- This function is called by the advtrains_livery_designer tool whenever the player
 	-- activates the "Apply" button. The texture and/or the mesh could optionally be
 	-- modified here, if needed.

@@ -64,13 +64,23 @@ Note that the bike painter tool first clears any livery customization that may h
 
 The livery designer tool has a graphical user interface that allows easier access to livery template selection and supports independent colorization of multiple overlays of the livery.  It also allows players to preview and select predefined liveries.  See the livery designer tool's documentation included in the **AdvTrains Livery Tools** modpack for more information.
 
+## Game Support
+As with **AdvTrains**, the Classic Coaches mod is compatible with many games when playing in creative mode and fully supports survival mode in [Minetest Game](https://content.minetest.net/packages/Minetest/minetest_game/) and its many variants.  However, Classic Coaches also supports survival mode in games that are not based on **Minetest Game** including the following:
+
+- [Farlands Reloaded](https://content.minetest.net/packages/wsor4035/farlands_reloaded/)
+- [Hades Revisited](https://content.minetest.net/packages/Wuzzy/hades_revisited/)
+- [Minecloneia](https://content.minetest.net/packages/ryvnf/mineclonia/)
+- [VoxeLibre](https://content.minetest.net/packages/Wuzzy/mineclone2/) (formerly known as MineClone2)
+
+Note that support for survival mode in those games is subject to potential breakage in the future if those games change their materials or crafting system.
+
 ## Author's Notes
 
 1) These wagon models are the same ones that I created in 2022 with the intention of adding them to the [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/) mod pack.  However, with multiple variations of the Moretrains modpack currently in use, I have decided to release these wagons separately in this mod for easier distribution and to use them for showcasing new livery customization functionality.  Both the liveries and the crafting recipes in this mod are different from the those that I created for Moretrains so they won't conflict with one another if used in the same game.
 
 ## Licenses
 
-Copyright © 2022-2023 Marnack
+Copyright © 2022-2024 Marnack
 
 - Classic Coaches code is licensed under the GNU AGPL version 3 license, see [LICENSE.txt](LICENSE.txt) for details.
 - Unless otherwise specified, Classic Coaches media (models, textures, images  and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).

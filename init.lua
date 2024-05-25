@@ -4,10 +4,124 @@ local S = minetest.get_translator(mod_name)
 
 local use_advtrains_livery_designer = minetest.get_modpath( "advtrains_livery_designer" ) and advtrains_livery_designer
 
-local door = 'default:steel_ingot'
-if minetest.get_modpath("doors") then
-	door = 'doors:door_steel'
+----------------------------------------------------------------------------------------
+
+local function get_materials_minetest_game()
+	return {
+		base_game	= "Minetest Game",
+
+		door_steel	= minetest.get_modpath("doors") and "doors:trapdoor_steel" or "default:steel_ingot",
+		dye_grey	= "dye:grey",
+		glass		= "default:glass",
+		goldblock	= "default:goldblock",
+		steel_ingot	= "default:steel_ingot",
+		steelblock	= "default:steelblock",
+		wheel		= "advtrains:wheel",
+		wool_blue	= minetest.get_modpath("wool") and "wool:blue" or "dye:blue",
+		wool_cyan	= minetest.get_modpath("wool") and "wool:cyan" or "dye:cyan",
+	}
 end
+
+local function get_materials_mineclonia()
+	return {
+		base_game	= "Mineclonia",
+
+		door_steel	= minetest.get_modpath("mcl_doors") and "mcl_doors:iron_door" or "mcl_core:iron_ingot",
+		dye_grey	= "mcl_dyes:grey",
+		glass		= "mcl_core:glass",
+		goldblock	= "mcl_core:goldblock",
+		steel_ingot	= "mcl_core:iron_ingot",
+		steelblock	= "mcl_core:ironblock",
+		wheel		= "advtrains:wheel",
+		wool_blue	= minetest.get_modpath("mcl_wool") and "mcl_wool:blue" or "mcl_dyes:blue",
+		wool_cyan	= minetest.get_modpath("mcl_wool") and "mcl_wool:cyan" or "mcl_dyes:cyan",
+	}
+end
+
+local function get_materials_voxelibre()
+	return {
+		base_game	= "VoxeLibre/MineClone2",
+
+		door_steel	= minetest.get_modpath("mcl_doors") and "mcl_doors:iron_door" or "mcl_core:iron_ingot",
+		dye_grey	= "mcl_dye:grey",
+		glass		= "mcl_core:glass",
+		goldblock	= "mcl_core:goldblock",
+		steel_ingot	= "mcl_core:iron_ingot",
+		steelblock	= "mcl_core:ironblock",
+		wheel		= "advtrains:wheel",
+		wool_blue	= minetest.get_modpath("mcl_wool") and "mcl_wool:blue" or "mcl_dye:blue",
+		wool_cyan	= minetest.get_modpath("mcl_wool") and "mcl_wool:cyan" or "mcl_dye:cyan",
+	}
+end
+
+local function get_materials_farlands_reloaded()
+	return {
+		base_game	= "Farlands Reloaded",
+
+		door_steel	= minetest.get_modpath("fl_doors") and "fl_doors:steel_door_a" or "fl_ores:iron_ingot",
+		dye_grey	= "fl_dyes:grey_dye",
+		glass		= "fl_glass:framed_glass",
+		goldblock	= "fl_ores:gold_block",
+		steel_ingot	= "fl_ores:iron_ingot",
+		steelblock	= "fl_ores:iron_block",
+		wheel		= "advtrains:wheel",
+		wool_blue	= "fl_dyes:blue_dye",	-- farlands handles wool color via param 2 so use dye instead.
+		wool_cyan	= "fl_dyes:cyan_dye",	-- farlands handles wool color via param 2 so use dye instead.
+	}
+end
+
+local function get_materials_hades_revisited()
+	return {
+		base_game	= "Hades Revisited",
+
+		door_steel	= minetest.get_modpath("hades_doors") and "hades_doors:door_steel_a" or "hades_core:steel_ingot",
+		dye_grey	= "hades_dye:grey",
+		glass		= "hades_core:glass",
+		goldblock	= "hades_core:goldblock",
+		steel_ingot	= "hades_core:steel_ingot",
+		steelblock	= "hades_core:steelblock",
+		wheel		= "advtrains:wheel",
+		wool_blue	= minetest.get_modpath("hades_cloth") and "hades_cloth:blue" or "hades_dye:blue",
+		wool_cyan	= minetest.get_modpath("hades_cloth") and "hades_cloth:cyan" or "hades_dye:cyan",
+	}
+end
+
+local function get_materials()
+	if minetest.get_modpath("default") and minetest.get_modpath("dye") then
+		return get_materials_minetest_game()
+	end
+
+	if minetest.get_modpath("mcl_core") and minetest.get_modpath("mcl_dyes") then
+		return get_materials_mineclonia()
+	end
+
+	if minetest.get_modpath("mcl_core") and minetest.get_modpath("mcl_dye") then
+		return get_materials_voxelibre()
+	end
+
+	if minetest.get_modpath("fl_dyes") and minetest.get_modpath("fl_glass") and minetest.get_modpath("fl_ores") then
+		return get_materials_farlands_reloaded()
+	end
+
+	if minetest.get_modpath("hades_core") and minetest.get_modpath("hades_dye") then
+		return get_materials_hades_revisited()
+	end
+
+	local unknown_material = "classic_coaches:unknown_material"
+	return {
+		door_steel	= unknown_material,
+		dye_grey	= unknown_material,
+		glass		= unknown_material,
+		goldblock	= unknown_material,
+		steel_ingot	= unknown_material,
+		steelblock	= unknown_material,
+		wheel		= unknown_material,
+		wool_blue	= unknown_material,
+		wool_cyan	= unknown_material,
+	}
+end
+
+local materials = get_materials()
 
 ----------------------------------------------------------------------------------------
 
@@ -23,7 +137,7 @@ local wagons = {
 		name = S("Intercity Corridor Coach Class 1"),
 		inventory_image = "classic_coaches_corridor_coach_class1_inv.png",
 		recipe = {
-			{'default:goldblock'},
+			{materials.goldblock},
 			{'classic_coaches:corridor_coach_class2'},
 		},
 	},
@@ -34,9 +148,9 @@ local wagons = {
 		name = S("Intercity Corridor Coach Class 2"),
 		inventory_image = "classic_coaches_corridor_coach_class2_inv.png",
 		recipe = {
-			{'default:steelblock', 'dye:grey', 'default:steelblock'},
-			{'default:glass', 'wool:blue', door},
-			{'advtrains:wheel', 'default:steelblock', 'advtrains:wheel'},
+			{materials.steelblock, materials.dye_grey, materials.steelblock},
+			{materials.glass, materials.wool_blue, materials.door_steel},
+			{materials.wheel, materials.steelblock, materials.wheel},
 		},
 	},
 	{
@@ -46,7 +160,7 @@ local wagons = {
 		name = S("Intercity Open Coach Class 1"),
 		inventory_image = "classic_coaches_open_coach_class1_inv.png",
 		recipe = {
-			{'default:goldblock'},
+			{materials.goldblock},
 			{'classic_coaches:open_coach_class2'},
 		},
 	},
@@ -57,9 +171,9 @@ local wagons = {
 		name = S("Intercity Open Coach Class 2"),
 		inventory_image = "classic_coaches_open_coach_class2_inv.png",
 		recipe = {
-			{'default:steelblock', 'dye:grey', 'default:steelblock'},
-			{'default:glass', 'wool:cyan', door},
-			{'advtrains:wheel', 'default:steelblock', 'advtrains:wheel'},
+			{materials.steelblock, materials.dye_grey, materials.steelblock},
+			{materials.glass, materials.wool_cyan, materials.door_steel},
+			{materials.wheel, materials.steelblock, materials.wheel},
 		},
 	},
 }
@@ -567,9 +681,9 @@ local predefined_liveries = {
 if use_advtrains_livery_designer then
 	-- Notify player if a newer version of AdvTrains Livery Tools is available or needed.
 	if not advtrains_livery_designer.is_compatible_mod_version or
-	   not advtrains_livery_designer.is_compatible_mod_version({major = 0, minor = 8, patch = 3}) then
+	   not advtrains_livery_designer.is_compatible_mod_version({major = 0, minor = 8, patch = 4}) then
 		minetest.log("info", "["..mod_name.."] An old version of AdvTrains Livery Tools was detected. Consider updating to the latest version.")
-		-- Version 0.8.3 is not currently required so just log an informational message.
+		-- Version 0.8.4 is not currently required so just log an informational message.
 	end
 
 	-- This function is called by the advtrains_livery_designer tool whenever the player
@@ -800,11 +914,14 @@ for _, wagon in pairs(wagons) do
 		collisionbox = {-1.0,-0.5,-1.0, 1.0,2.5,1.0},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock"},
+		drops={materials.steelblock},
 	}, wagon.name, wagon.inventory_image)
 
-	minetest.register_craft({
-		output = wagon.wagon_type,
-		recipe = wagon.recipe,
-	})
+	-- Only register crafting recipes for the wagon if the needed mods are available.
+	if materials.base_game then
+		minetest.register_craft({
+			output = wagon.wagon_type,
+			recipe = wagon.recipe,
+		})
+	end
 end

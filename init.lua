@@ -3,6 +3,7 @@ local mod_name = "classic_coaches"
 local S = minetest.get_translator(mod_name)
 
 local use_advtrains_livery_designer = minetest.get_modpath( "advtrains_livery_designer" ) and advtrains_livery_designer
+local use_attachment_patch = advtrains_attachment_offset_patch and advtrains_attachment_offset_patch.setup_advtrains_wagon
 
 ----------------------------------------------------------------------------------------
 
@@ -1175,25 +1176,27 @@ local common_seats = {
 	{
 		name="1",
 		attach_offset={x=0, y=-2, z=17},
-		view_offset={x=0, y=-1.7, z=0},
+		view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-1.7, z=0},
+		advtrains_attachment_offset_patch_attach_rotation = use_attachment_patch and {x=0, y=180, z=0} or nil,
 		group="pass",
 	},
 	{
 		name="2",
 		attach_offset={x=0, y=-2, z=6},
-		view_offset={x=0, y=-1.7, z=0},
+		view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-1.7, z=0},
+		advtrains_attachment_offset_patch_attach_rotation = use_attachment_patch and {x=0, y=180, z=0} or nil,
 		group="pass",
 	},
 	{
 		name="3",
 		attach_offset={x=0, y=-2, z=-6},
-		view_offset={x=0, y=-1.7, z=0},
+		view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-1.7, z=0},
 		group="pass",
 	},
 	{
 		name="4",
 		attach_offset={x=0, y=-2, z=-17},
-		view_offset={x=0, y=-1.7, z=0},
+		view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-1.7, z=0},
 		group="pass",
 	},
 }
@@ -1202,25 +1205,25 @@ local bistro_seats = {
 	{
 		name="1",
 		attach_offset={x=0, y=-2, z=6},
-		view_offset={x=0, y=-1.7, z=0},
+		view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-1.7, z=0},
 		group="pass",
 	},
 	{
 		name="2",
 		attach_offset={x=0, y=-2, z=-6},
-		view_offset={x=0, y=-1.7, z=0},
+		view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-1.7, z=0},
 		group="pass",
 	},
 	{
 		name="3",
 		attach_offset={x=0, y=-2, z=-17},
-		view_offset={x=0, y=-1.7, z=0},
+		view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-1.7, z=0},
 		group="pass",
 	},
 }
 
 for _, wagon in pairs(wagons) do
-	advtrains.register_wagon(wagon.wagon_type, {
+	local wagon_def = {
 		mesh = wagon.mesh,
 		textures = wagon.textures,
 		set_textures = set_textures,
@@ -1257,7 +1260,13 @@ for _, wagon in pairs(wagons) do
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
 		drops={materials.steelblock},
-	}, wagon.name, wagon.inventory_image)
+	}
+
+	if use_attachment_patch then
+		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
+	end
+
+	advtrains.register_wagon(wagon.wagon_type, wagon_def, wagon.name, wagon.inventory_image)
 
 	-- Only register crafting recipes for the wagon if the needed mods are available.
 	if materials.base_game then

@@ -10,6 +10,7 @@ local function get_materials_minetest_game()
 	return {
 		base_game	= "Minetest Game",
 
+		bottle		= minetest.get_modpath("vessels") and "vessels:glass_bottle" or "default:glass",
 		door_steel	= minetest.get_modpath("doors") and "doors:trapdoor_steel" or "default:steel_ingot",
 		dye_grey	= "dye:grey",
 		glass		= "default:glass",
@@ -26,6 +27,7 @@ local function get_materials_mineclonia()
 	return {
 		base_game	= "Mineclonia",
 
+		bottle		= minetest.get_modpath("mcl_potions") and "mcl_potions:glass_bottle" or "mcl_core:glass",
 		door_steel	= minetest.get_modpath("mcl_doors") and "mcl_doors:iron_door" or "mcl_core:iron_ingot",
 		dye_grey	= "mcl_dyes:grey",
 		glass		= "mcl_core:glass",
@@ -42,6 +44,7 @@ local function get_materials_voxelibre()
 	return {
 		base_game	= "VoxeLibre/MineClone2",
 
+		bottle		= minetest.get_modpath("mcl_potions") and "mcl_potions:glass_bottle" or "mcl_core:glass",
 		door_steel	= minetest.get_modpath("mcl_doors") and "mcl_doors:iron_door" or "mcl_core:iron_ingot",
 		dye_grey	= "mcl_dye:grey",
 		glass		= "mcl_core:glass",
@@ -58,6 +61,7 @@ local function get_materials_farlands_reloaded()
 	return {
 		base_game	= "Farlands Reloaded",
 
+		bottle		= minetest.get_modpath("fl_bottles") and "fl_bottles:bottle" or "fl_glass:framed_glass",
 		door_steel	= minetest.get_modpath("fl_doors") and "fl_doors:steel_door_a" or "fl_ores:iron_ingot",
 		dye_grey	= "fl_dyes:grey_dye",
 		glass		= "fl_glass:framed_glass",
@@ -74,6 +78,7 @@ local function get_materials_hades_revisited()
 	return {
 		base_game	= "Hades Revisited",
 
+		bottle		= minetest.get_modpath("hades_vessels") and "hades_vessels:glass_bottle" or "hades_core:glass",
 		door_steel	= minetest.get_modpath("hades_doors") and "hades_doors:door_steel_a" or "hades_core:steel_ingot",
 		dye_grey	= "hades_dye:grey",
 		glass		= "hades_core:glass",
@@ -109,6 +114,7 @@ local function get_materials()
 
 	local unknown_material = "classic_coaches:unknown_material"
 	return {
+		bottle		= unknown_material,
 		door_steel	= unknown_material,
 		dye_grey	= unknown_material,
 		glass		= unknown_material,
@@ -172,6 +178,18 @@ local wagons = {
 		inventory_image = "classic_coaches_open_coach_class2_inv.png",
 		recipe = {
 			{materials.steelblock, materials.dye_grey, materials.steelblock},
+			{materials.glass, materials.wool_cyan, materials.door_steel},
+			{materials.wheel, materials.steelblock, materials.wheel},
+		},
+	},
+	{
+		wagon_type = "classic_coaches:bistro_coach",
+		mesh = "classic_coaches_bistro_coach.b3d",
+		textures = {"classic_coaches_bistro_coach_001.png"},
+		name = S("Intercity Bistro Coach"),
+		inventory_image = "classic_coaches_bistro_coach_inv.png",
+		recipe = {
+			{materials.steelblock, materials.bottle, materials.steelblock},
 			{materials.glass, materials.wool_cyan, materials.door_steel},
 			{materials.wheel, materials.steelblock, materials.wheel},
 		},
@@ -481,15 +499,101 @@ local livery_templates = {
 			},
 		},
 	},
+	["classic_coaches:bistro_coach"] = {
+		[1] = {
+			base_texture = "classic_coaches_bistro_coach_001.png",
+			overlays = {
+				[1] = {name = S("Side Walls"),		texture = "classic_coaches_overlay_001_bistro_side_walls.png",		alpha = default_wall_alpha},
+				[2] = {name = S("Stripe"),			texture = "classic_coaches_overlay_001_bistro_stripe.png",			alpha = default_wall_alpha},
+				[3] = {name = S("Stripe Divider"),	texture = "classic_coaches_overlay_001_bistro_stripe_divider.png"},
+				[4] = {name = S("Side Doors"),		texture = "classic_coaches_overlay_side_doors.png",					alpha = default_wall_alpha},
+				[5] = {name = S("Galley"),			texture = "classic_coaches_overlay_bistro_galley.png",				alpha = default_wall_alpha},
+			},
+		},
+		[2] = {
+			base_texture = "classic_coaches_bistro_coach_002.png",
+			overlays = {
+				[1] = {name = S("Exterior Walls"),	texture = "classic_coaches_overlay_002_bistro_exterior_walls.png",	alpha = default_wall_alpha},
+				[2] = {name = S("Stripe"),			texture = "classic_coaches_overlay_002_stripe.png",					alpha = default_wall_alpha},
+				[3] = {name = S("Service Stripe"),	texture = "classic_coaches_overlay_service_stripe.png"},
+				[4] = {name = S("Side Doors"),		texture = "classic_coaches_overlay_side_doors.png",					alpha = default_wall_alpha},
+				[5] = {name = S("Bistro Label"),	texture = "classic_coaches_overlay_bistro_label_5.png",				alpha = default_wall_alpha},
+			},
+		},
+		[3] = {
+			base_texture = "classic_coaches_bistro_coach_003.png",
+			overlays = {
+				[1] = {name = S("Side Walls"),		texture = "classic_coaches_overlay_003_bistro_side_walls.png",		alpha = default_wall_alpha},
+				[2] = {name = S("Stripe"),			texture = "classic_coaches_overlay_003_stripe.png",					alpha = default_wall_alpha},
+				[3] = {name = S("Stripe Edges"),	texture = "classic_coaches_overlay_003_stripe_edges.png"},
+				[4] = {name = S("Logo"),			texture = "classic_coaches_overlay_cc_logo_1.png"},
+				[5] = {name = S("End Doors"),		texture = "classic_coaches_overlay_end_doors.png",					alpha = default_wall_alpha},
+				[6] = {name = S("Bistro Label"),	texture = "classic_coaches_overlay_bistro_label_1.png",				alpha = default_wall_alpha},
+			},
+		},
+		[4] = {
+			base_texture = "classic_coaches_bistro_coach_004.png",
+			overlays = {
+				[1] = {name = S("Side Walls"),		texture = "classic_coaches_overlay_004_bistro_side_walls.png",		alpha = default_wall_alpha},
+				[2] = {name = S("Window Band"),		texture = "classic_coaches_overlay_004_bistro_window_band.png",		alpha = default_wall_alpha},
+				[3] = {name = S("Decoration"),		texture = "classic_coaches_overlay_004_decoration.png"},
+				[4] = {name = S("Logo"),			texture = "classic_coaches_overlay_cc_logo_2.png"},
+				[5] = {name = S("Bistro Label"),	texture = "classic_coaches_overlay_bistro_label_4.png"},
+			},
+		},
+		[5] = {
+			base_texture = "classic_coaches_bistro_coach_005.png",
+			overlays = {
+				[1] = {name = S("Side Walls"),		texture = "classic_coaches_overlay_005_bistro_side_walls.png",		alpha = default_wall_alpha},
+				[2] = {name = S("Seats"),			texture = "classic_coaches_overlay_bistro_seats.png",				alpha = default_seat_alpha},
+				[3] = {name = S("Service Stripe"),	texture = "classic_coaches_overlay_service_stripe.png"},
+				[4] = {name = S("Logo"),			texture = "classic_coaches_overlay_cc_logo_2.png"},
+				[5] = {name = S("Bistro Label"),	texture = "classic_coaches_overlay_bistro_label_2.png"},
+				[6] = {name = S("Galley"),			texture = "classic_coaches_overlay_bistro_galley.png",				alpha = default_wall_alpha},
+			},
+		},
+		[6] = {
+			base_texture = "classic_coaches_bistro_coach_006.png",
+			overlays = {
+				[1] = {name = S("Side Walls"),		texture = "classic_coaches_overlay_006_bistro_side_walls.png",		alpha = default_wall_alpha},
+				[2] = {name = S("Roof"),			texture = "classic_coaches_overlay_006_roof.png",					alpha = default_roof_alpha},
+				[3] = {name = S("Trim"),			texture = "classic_coaches_overlay_006_trim.png"},
+				[4] = {name = S("Logo"),			texture = "classic_coaches_overlay_cc_logo_2.png"},
+				[5] = {name = S("End Doors"),		texture = "classic_coaches_overlay_end_doors.png",					alpha = default_wall_alpha},
+				[6] = {name = S("Bistro Label"),	texture = "classic_coaches_overlay_bistro_label_2.png"},
+			},
+		},
+		[7] = {
+			base_texture = "classic_coaches_bistro_coach_007.png",
+			overlays = {
+				[1] = {name = S("Exterior Walls"),	texture = "classic_coaches_overlay_007_bistro_exterior_walls.png",	alpha = default_wall_alpha},
+				[2] = {name = S("Seats"),			texture = "classic_coaches_overlay_bistro_seats.png",				alpha = default_seat_alpha},
+				[3] = {name = S("Decoration"),		texture = "classic_coaches_overlay_007_decoration.png"},
+				[4] = {name = S("Label"),			texture = "classic_coaches_overlay_007_label.png"},
+				[5] = {name = S("Bistro Label"),	texture = "classic_coaches_overlay_bistro_label_3.png"},
+				[6] = {name = S("Logo and Text"),	texture = "classic_coaches_overlay_007_logo_text.png"},
+			},
+		},
+	},
 }
 
--- Note: While all of the following predefined liveries will be registered
--- for all of the wagon types defined in this mod, it is not required and
--- might not be true if new wagons are added in the future.
+-- Define groups of wagon types that will share predefined liveries.
+local wagon_types = {
+	common_coaches = {
+		"classic_coaches:corridor_coach_class1",
+		"classic_coaches:corridor_coach_class2",
+		"classic_coaches:open_coach_class1",
+		"classic_coaches:open_coach_class2",
+	},
+	bistro_coaches = {
+		"classic_coaches:bistro_coach",
+	},
+}
 
 local predefined_liveries = {
 	{
 		name = S("CC Classic"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Window Band"),
@@ -503,7 +607,23 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("CC Classic"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Window Band"),
+			overlays = {
+				[1] = {id = 1,	color = "#FAF0E6"},	-- "Side Walls",
+				[2] = {id = 2,	color = "#202020"},	-- "Window Band",
+				[3] = {id = 3,	color = "#800000"},	-- "Decoration",
+--				[4] = {id = 4,	color = "#000000"},	-- "Logo",
+				[5] = {id = 5,	color = "#C0C0C0"},	-- "Bistro Label",
+			},
+		},
+	},
+	{
 		name = S("CC Classic Double Stripe"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Edged Stripe"),
@@ -517,7 +637,24 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("CC Classic Double Stripe"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Edged Stripe"),
+			overlays = {
+				[1] = {id = 1,	color = "#FAF0E6"},	-- "Side Walls",
+				[2] = {id = 2,	color = "#FAF0E6"},	-- "Stripe",
+				[3] = {id = 3,	color = "#800000"},	-- "Stripe Edges",
+--				[4] = {id = 4,	color = "#000000"},	-- "Logo",
+--				[5] = {id = 5,	color = "#000000"},	-- "End Doors",
+				[6] = {id = 6,	color = "#969696"},	-- "Bistro Label",
+			},
+		},
+	},
+	{
 		name = S("CC Intercity Urban"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Intercity Stripe"),
@@ -531,7 +668,23 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("CC Intercity Urban"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Intercity Stripe"),
+			overlays = {
+				[1] = {id = 1,	color = "#808080"},	-- "Exterior Walls",
+				[2] = {id = 2,	color = "#006400"},	-- "Stripe",
+--				[3] = {id = 3,	color = "#000000"},	-- "Service Stripe",
+				[4] = {id = 4,	color = "#808080"},	-- "Side Doors",
+				[5] = {id = 5,	color = "#B0B0B0"},	-- "Bistro Label",
+			},
+		},
+	},
+	{
 		name = S("CC Intercity Dark Olive"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Intercity Stripe"),
@@ -545,7 +698,23 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("CC Intercity Dark Olive"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Intercity Stripe"),
+			overlays = {
+				[1] = {id = 1,	color = "#516200"},	-- "Exterior Walls",
+--				[2] = {id = 2,	color = "#000000"},	-- "Stripe",
+--				[3] = {id = 3,	color = "#000000"},	-- "Service Stripe",
+--				[4] = {id = 4,	color = "#000000"},	-- "Side Doors",
+				[5] = {id = 5,	color = "#7C8B00"},	-- "Bistro Label",
+			},
+		},
+	},
+	{
 		name = S("CC Legacy Solid Red"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Solid Color"),
@@ -559,7 +728,24 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("CC Legacy Solid Red"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Solid Color"),
+			overlays = {
+				[1] = {id = 1,	color = "#800000"},	-- "Side Walls",
+				[2] = {id = 2,	color = "#2E8B57"},	-- "Seats",
+				[3] = {id = 3,	color = "#DAA520"},	-- "Service Stripe",
+				[4] = {id = 4,	color = "#FAF0E6"},	-- "Logo",
+				[5] = {id = 5,	color = "#C60000"},	-- "Bistro Label",
+				[6] = {id = 6,	color = "#2E8B57"},	-- "Galley",
+			},
+		},
+	},
+	{
 		name = S("CC Modern Brown Stripe"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Stripe"),
@@ -573,7 +759,23 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("CC Modern Brown Stripe"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Stripe"),
+			overlays = {
+--				[1] = {id = 1,	color = "#000000"},	-- "Side Walls",
+				[2] = {id = 2,	color = "#8B4513"},	-- "Stripe",
+				[3] = {id = 3,	color = "#DAA520"},	-- "Stripe Divider",
+--				[4] = {id = 4,	color = "#000000"},	-- "Side Doors",
+				[5] = {id = 5,	color = "#DAA520"},	-- "Galley",
+			},
+		},
+	},
+	{
 		name = S("CC Slate Roof"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Colored Roof"),
@@ -587,7 +789,24 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("CC Slate Roof"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Colored Roof"),
+			overlays = {
+				[1] = {id = 1,	color = "#708090"},	-- "Side Walls",
+				[2] = {id = 2,	color = "#2F4F4F"},	-- "Roof",
+				[3] = {id = 3,	color = "#2F4F4F"},	-- "Trim",
+				[4] = {id = 4,	color = "#2F4F4F"},	-- "Logo",
+				[5] = {id = 5,	color = "#708090"},	-- "End Doors",
+--				[6] = {id = 6,	color = "#000000"},	-- "Bistro Label",
+			},
+		},
+	},
+	{
 		name = S("CC Legacy Express"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Express"),
@@ -597,12 +816,29 @@ local predefined_liveries = {
 --				[3] = {id = 3,	color = "#000000"},	-- "Decoration",
 --				[4] = {id = 4,	color = "#000000"},	-- "Label",
 --				[5] = {id = 5,	color = "#000000"},	-- "Class Number",
---				[6] = {id = 6,	color = "#000000"},	-- "Logo",
+--				[6] = {id = 6,	color = "#000000"},	-- "Logo and Text",
+			},
+		},
+	},
+	{
+		name = S("CC Legacy Express"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Express"),
+			overlays = {
+				[1] = {id = 1,	color = "#400000"},	-- "Exterior Walls",
+				[2] = {id = 2,	color = "#000030"},	-- "Seats",
+--				[3] = {id = 3,	color = "#000000"},	-- "Decoration",
+--				[4] = {id = 4,	color = "#000000"},	-- "Label",
+--				[5] = {id = 5,	color = "#000000"},	-- "Bistro Label",
+--				[6] = {id = 6,	color = "#000000"},	-- "Logo and Text",
 			},
 		},
 	},
 	{
 		name = S("No Logo Solid Green"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Solid Color"),
@@ -616,7 +852,24 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("No Logo Solid Green"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Solid Color"),
+			overlays = {
+				[1] = {id = 1,	color = "#004000"},	-- "Side Walls",
+--				[2] = {id = 2,	color = "#000000"},	-- "Seats",
+--				[3] = {id = 3,	color = "#000000"},	-- "Service Stripe",
+				[4] = {id = 4,	color = "#004000"},	-- "Logo",
+--				[5] = {id = 5,	color = "#000000"},	-- "Bistro Label",
+--				[6] = {id = 6,	color = "#000000"},	-- "Galley",
+			},
+		},
+	},
+	{
 		name = S("No Logo Retro Mojo"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Window Band"),
@@ -630,7 +883,23 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("No Logo Retro Mojo"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Window Band"),
+			overlays = {
+				[1] = {id = 1,	color = "#008080"},	-- "Side Walls",
+				[2] = {id = 2,	color = "#FAF0E6"},	-- "Window Band",
+				[3] = {id = 3,	color = "#FAF0E6"},	-- "Decoration",
+				[4] = {id = 4,	color = "#008080"},	-- "Logo",
+				[5] = {id = 5,	color = "#009C9C"},	-- "Bistro Label",
+			},
+		},
+	},
+	{
 		name = S("No Logo Classic Express"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Express"),
@@ -645,7 +914,24 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("No Logo Classic Express"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Express"),
+			overlays = {
+--				[1] = {id = 1,	color = "#000000"},	-- "Exterior Walls",
+--				[2] = {id = 2,	color = "#000000"},	-- "Seats",
+--				[3] = {id = 3,	color = "#000000"},	-- "Decoration",
+--				[4] = {id = 4,	color = "#000000"},	-- "Label",
+--				[5] = {id = 5,	color = "#000000"},	-- "Bistro Label",
+				[6] = {id = 6,	color = "#000030"},	-- "Logo",
+			},
+		},
+	},
+	{
 		name = S("No Logo Evergreen Express"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Express"),
@@ -660,7 +946,24 @@ local predefined_liveries = {
 		},
 	},
 	{
+		name = S("No Logo Evergreen Express"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Express"),
+			overlays = {
+				[1] = {id = 1,	color = "#003B00"},	-- "Exterior Walls",
+				[2] = {id = 2,	color = "#2E8B57"},	-- "Seats",
+				[3] = {id = 3,	color = "#008000"},	-- "Decoration",
+--				[4] = {id = 4,	color = "#000000"},	-- "Label",
+--				[5] = {id = 5,	color = "#000000"},	-- "Bistro Label",
+				[6] = {id = 6,	color = "#003B00"},	-- "Logo",
+			},
+		},
+	},
+	{
 		name = S("No Logo Expresso Express"),
+		wagon_types = wagon_types.common_coaches,
 		notes = "",
 		livery_design = {
 			livery_template_name = S("CC Express"),
@@ -674,6 +977,22 @@ local predefined_liveries = {
 			},
 		},
 	},
+	{
+		name = S("No Logo Expresso Express"),
+		wagon_types = wagon_types.bistro_coaches,
+		notes = "",
+		livery_design = {
+			livery_template_name = S("CC Express"),
+			overlays = {
+				[1] = {id = 1,	color = "#703000"},	-- "Exterior Walls",
+				[2] = {id = 2,	color = "#D2B48C"},	-- "Seats",
+				[3] = {id = 3,	color = "#FFA500"},	-- "Decoration",
+				[4] = {id = 4,	color = "#FF8C00"},	-- "Label",
+--				[5] = {id = 5,	color = "#000000"},	-- "Bistro Label",
+				[6] = {id = 6,	color = "#703000"},	-- "Logo",
+			},
+		},
+	},
 }
 
 -- ===============================================================================================================================================
@@ -681,9 +1000,9 @@ local predefined_liveries = {
 if use_advtrains_livery_designer then
 	-- Notify player if a newer version of AdvTrains Livery Tools is available or needed.
 	if not advtrains_livery_designer.is_compatible_mod_version or
-	   not advtrains_livery_designer.is_compatible_mod_version({major = 0, minor = 8, patch = 4}) then
+	   not advtrains_livery_designer.is_compatible_mod_version({major = 0, minor = 9, patch = 0}) then
 		minetest.log("info", "["..mod_name.."] An old version of AdvTrains Livery Tools was detected. Consider updating to the latest version.")
-		-- Version 0.8.4 is not currently required so just log an informational message.
+		-- Version 0.9.0 is not currently required so just log an informational message.
 	end
 
 	-- This function is called by the advtrains_livery_designer tool whenever the player
@@ -740,10 +1059,10 @@ if use_advtrains_livery_designer then
 
 	-- Register this mod's predefined wagon liveries with the advtrains_livery_designer tool.
 	for _, predefined_livery in pairs(predefined_liveries) do
-		-- Each predefined livery will be defined for each wagon type.  This may not be true in the future.
-		for _, wagon in pairs(wagons) do
+		-- Each predefined livery will specify the wagon types to which it applies.
+		for _, wagon_type in pairs(predefined_livery.wagon_types) do
 			local livery_design = predefined_livery.livery_design
-			livery_design.wagon_type = wagon.wagon_type
+			livery_design.wagon_type = wagon_type
 			advtrains_livery_database.add_predefined_livery(predefined_livery.name, livery_design, mod_name, predefined_livery.notes)
 		end
 	end
@@ -852,6 +1171,54 @@ end
 
 ----------------------------------------------------------------------------------------
 
+local common_seats = {
+	{
+		name="1",
+		attach_offset={x=0, y=-2, z=17},
+		view_offset={x=0, y=-1.7, z=0},
+		group="pass",
+	},
+	{
+		name="2",
+		attach_offset={x=0, y=-2, z=6},
+		view_offset={x=0, y=-1.7, z=0},
+		group="pass",
+	},
+	{
+		name="3",
+		attach_offset={x=0, y=-2, z=-6},
+		view_offset={x=0, y=-1.7, z=0},
+		group="pass",
+	},
+	{
+		name="4",
+		attach_offset={x=0, y=-2, z=-17},
+		view_offset={x=0, y=-1.7, z=0},
+		group="pass",
+	},
+}
+
+local bistro_seats = {
+	{
+		name="1",
+		attach_offset={x=0, y=-2, z=6},
+		view_offset={x=0, y=-1.7, z=0},
+		group="pass",
+	},
+	{
+		name="2",
+		attach_offset={x=0, y=-2, z=-6},
+		view_offset={x=0, y=-1.7, z=0},
+		group="pass",
+	},
+	{
+		name="3",
+		attach_offset={x=0, y=-2, z=-17},
+		view_offset={x=0, y=-1.7, z=0},
+		group="pass",
+	},
+}
+
 for _, wagon in pairs(wagons) do
 	advtrains.register_wagon(wagon.wagon_type, {
 		mesh = wagon.mesh,
@@ -863,32 +1230,7 @@ for _, wagon in pairs(wagons) do
 		end,
 		drives_on={default=true},
 		max_speed=20,
-		seats = {
-			{
-				name="1",
-				attach_offset={x=0, y=-2, z=17},
-				view_offset={x=0, y=-1.7, z=0},
-				group="pass",
-			},
-			{
-				name="2",
-				attach_offset={x=0, y=-2, z=6},
-				view_offset={x=0, y=-1.7, z=0},
-				group="pass",
-			},
-			{
-				name="3",
-				attach_offset={x=0, y=-2, z=-6},
-				view_offset={x=0, y=-1.7, z=0},
-				group="pass",
-			},
-			{
-				name="4",
-				attach_offset={x=0, y=-2, z=-17},
-				view_offset={x=0, y=-1.7, z=0},
-				group="pass",
-			},
-		},
+		seats = wagon.wagon_type == "classic_coaches:bistro_coach" and bistro_seats or common_seats,
 		seat_groups = {
 			pass={
 				name = "Passenger area",

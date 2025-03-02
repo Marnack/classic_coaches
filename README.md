@@ -1,6 +1,6 @@
 # Classic Coaches
 
-This mod is an extension for [Advanced Trains](https://content.minetest.net/packages/orwell/advtrains/) that adds a set of four intercity style passenger wagons, all of which have liveries that can be customized in-game by their owning players.
+This mod is an extension for [Advanced Trains](https://content.minetest.net/packages/orwell/advtrains/) that adds a set of four intercity style passenger wagons as well as a bistro wagon, all of which have liveries that can be customized in-game by their owning players.
 
 ![](screenshot.png)
 
@@ -31,6 +31,12 @@ The wagon is modeled with 18 seats.  Up to 3 players can board each wagon.
 This wagon also features modern open plan style seating with vestibule access to adjoining wagons.  Each row contains four standard second class airline style seats.  Standard overhead shelving is located along both sides of the wagon.
 
 The wagon is modeled with 32 seats.  Up to 5 players can board each wagon.
+
+### Bistro Coach
+
+This wagon features booth style seating, standing tables and a moderately detailed galley area with service counter.
+
+The wagon is modeled with 4 booths and two standing tables.  Up to 3 players can board each wagon.
 
 ## Livery Customization
 
@@ -64,23 +70,27 @@ Note that the bike painter tool first clears any livery customization that may h
 
 The livery designer tool has a graphical user interface that allows easier access to livery template selection and supports independent colorization of multiple overlays of the livery.  It also allows players to preview and select predefined liveries.  See the livery designer tool's documentation included in the **AdvTrains Livery Tools** modpack for more information.
 
+#### An important note about Saved Liveries
+
+The livery designer tool normally only allows saved liveries to be applied to wagons of the same type.  For example, a livery for the *Open Coach Class 1* can only be applied to other wagons that are also of type *Open Coach Class 1*.  However, the tool provides for an exception when two different wagons are of a different type but both wagons have livery templates with the same name and those livery templates have the same number of overlays with the same overlay names.  In those particular cases, the livery tool will allow a saved livery to be applied to a different wagon type.  This feature of the tool might have made it seem that liveries can always be shared between wagon types since the original four wagons of this mod all have matching livery templates.  With the addition of the *Bistro Coach*, however, that is no longer the case.  Since that wagon's templates allow for customizing the color of the bistro label on the exterior of the wagon and, in some case, the galley inside the wagon, the livery templates for the *Bistro Coach* now differ from those of the other wagons in this mod.  Thus, applying saved liveries between it and the other wagon types might seem surprisingly limited or broken.  Please note that this is expected behavior of the livery tool.
+
 ## Game Support
 As with **AdvTrains**, the Classic Coaches mod is compatible with many games when playing in creative mode and fully supports survival mode in [Minetest Game](https://content.minetest.net/packages/Minetest/minetest_game/) and its many variants.  However, Classic Coaches also supports survival mode in games that are not based on **Minetest Game** including the following:
 
 - [Farlands Reloaded](https://content.minetest.net/packages/wsor4035/farlands_reloaded/)
 - [Hades Revisited](https://content.minetest.net/packages/Wuzzy/hades_revisited/)
 - [Minecloneia](https://content.minetest.net/packages/ryvnf/mineclonia/)
-- [VoxeLibre](https://content.minetest.net/packages/Wuzzy/mineclone2/) (formerly known as MineClone2)
+- [VoxeLibre](https://content.minetest.net/packages/Wuzzy/mineclone2/)
 
 Note that support for survival mode in those games is subject to potential breakage in the future if those games change their materials or crafting system.
 
 ## Author's Notes
 
-1) These wagon models are the same ones that I created in 2022 with the intention of adding them to the [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/) mod pack.  However, with multiple variations of the Moretrains modpack currently in use, I have decided to release these wagons separately in this mod for easier distribution and to use them for showcasing new livery customization functionality.  Both the liveries and the crafting recipes in this mod are different from the those that I created for Moretrains so they won't conflict with one another if used in the same game.
+1) The original four seat wagon models are the same ones that I created in 2022 for the [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/) mod pack.  However, since multiple variations of the Moretrains modpack are currently in use, I have decided to release these wagons separately in this mod for easier distribution and to use them for showcasing livery customization functionality.  Both the liveries and the crafting recipes in this mod are different from the those that I created for Moretrains so they won't conflict with one another if used in the same game.  I created the bistro wagon in 2025 specifically for this mod.
 
 ## Licenses
 
-Copyright © 2022-2024 Marnack
+Copyright © 2022-2025 Marnack
 
 - Classic Coaches code is licensed under the GNU AGPL version 3 license, see [LICENSE.txt](LICENSE.txt) for details.
 - Unless otherwise specified, Classic Coaches media (models, textures, images  and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).
